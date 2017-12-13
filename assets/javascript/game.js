@@ -27,16 +27,15 @@ var playerScore = 0;
 //Functions to run game
 //******************************************
 
-//This code will simplify the random number generator
+//Need a random number generator code to use for target score and gem values
 var makeRandom = function(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
 //Define what is needed to for the game to work
 var startGame = function() {
 
-	var playerScore = 0;
+	playerScore = 0;
 
 	targetScore = makeRandom(19, 120);
 
@@ -45,27 +44,68 @@ var startGame = function() {
 	gem.ruby.value = makeRandom(1, 12);
 	gem.tanz.value = makeRandom(1, 12);
 
+	$("#playerScore").html(playerScore);
+	$("#targetScore").html(targetScore);
+
 	console.log("Target Score: " + targetScore);
 	console.log("Diamond: " + gem.diamond.value + "| Emerald: " + gem.emerald.value + "| Ruby: " + gem.ruby.value + "| Tanzanite: " + gem.tanz.value);
+}
+//Add running tally of players score 
+var addScore = function(gem) {
+
+	playerScore = playerScore + gem.value;
+
+	$("#playerScore").html(playerScore);
+
+	winChecker();
+
+	console.log("Player score: " + playerScore);
+}
+
+//Need to have an alert for winning and for losing
+var winChecker = function() {
+
+	if (playerScore > targetScore) {
+		alert("Oh NO, You are not a winner!!!");
+		console.log("Lost it");
+
+		lossCount++;
+
+		$("#lossCount").html("lossCount");
+
+		startGame()
+	}
+	
+	else if (playerScore === targetScore) {
+		alert("Winner! Winner!");
+		console.log("Win for you");
+
+		winCount++;
+
+		$("#winCount").html("winCount");
+
+		startGame()
+	}
+
 }
 
 //Main Game 
 //******************************************
 
 $("#diamond").click(function(){
-	alert("you got it");
+	addScore(gem.diamond);
 });
 
 $("#emerald").click(function(){
-	alert("you got it");
+	addScore(gem.emerald);
 });
 
 $("#ruby").click(function(){
-	alert("you got it");
+	addScore(gem.ruby);
 });
 
 $("#tanz").click(function(){
-	alert("you got it");
+	addScore(gem.tanz);
 });
 
 startGame();
