@@ -21,7 +21,7 @@ var winCount = 0;
 var lossCount = 0;
 
 //Target Score and Player Score
-var tagetScore = 0;
+var targetScore = 0;
 var playerScore = 0;
 
 //Functions to run game
@@ -30,7 +30,7 @@ var playerScore = 0;
 //Need a random number generator code to use for target score and gem values
 var makeRandom = function(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
 //Define what is needed to for the game to work
 var startGame = function() {
@@ -49,7 +49,7 @@ var startGame = function() {
 
 	console.log("Target Score: " + targetScore);
 	console.log("Diamond: " + gem.diamond.value + "| Emerald: " + gem.emerald.value + "| Ruby: " + gem.ruby.value + "| Tanzanite: " + gem.tanz.value);
-}
+};
 //Add running tally of players score 
 var addScore = function(gem) {
 
@@ -60,7 +60,7 @@ var addScore = function(gem) {
 	winChecker();
 
 	console.log("Player score: " + playerScore);
-}
+};
 
 //Need to have an alert for winning and for losing
 var winChecker = function() {
@@ -71,23 +71,22 @@ var winChecker = function() {
 
 		lossCount++;
 
-		$("#lossCount").html("lossCount");
+		$("#lossCount").html(lossCount);
 
-		startGame()
+		startGame();
 	}
-	
-	else if (playerScore === targetScore) {
+	else if (playerScore == targetScore) {
 		alert("Winner! Winner!");
 		console.log("Win for you");
 
 		winCount++;
 
-		$("#winCount").html("winCount");
+		$("#winCount").html(winCount);
 
-		startGame()
+		startGame();
 	}
-
 }
+
 
 //Main Game 
 //******************************************
